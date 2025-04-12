@@ -5,7 +5,7 @@ function PageMain(props) {
 	const {children} = props;
 
 	return (
-		<main className={styles['main']} role='main'>
+		<main className='h-[100vh] grid place-content-center bg-[#14213D]'>
 			{children}
 		</main>
 	);

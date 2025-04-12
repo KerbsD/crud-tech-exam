@@ -1,67 +1,39 @@
-import React, {useState} from 'react';
-import {NavLink as Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
-	Collapse,
-	Navbar,
-	NavbarToggler,
-	NavbarBrand,
 	Nav,
 	NavItem,
-	NavLink,
-	UncontrolledDropdown,
-	DropdownToggle,
-	DropdownMenu,
-	DropdownItem,
-	NavbarText,
 } from 'reactstrap';
+import { House, SquareUser } from 'lucide-react'
 
 function PageNav() {
-	const [isOpen, setIsOpen] = useState(false);
-	const toggle = () => setIsOpen(!isOpen);
-
 	return (
-		<Navbar color='light' light expand='md'>
-			<NavbarBrand tag={Link} to='/'>
-				Admin
-			</NavbarBrand>
-			<NavbarToggler onClick={toggle} />
-			<Collapse isOpen={isOpen} navbar>
-				<Nav className='mr-auto' navbar>
-					<NavItem>
-						<NavLink tag={Link} to='/users'>
-							Users
-						</NavLink>
-					</NavItem>
-					<NavItem>
-						<NavLink tag={Link} to='/features'>
-							Features
-						</NavLink>
-					</NavItem>
-					<NavItem>
-						<NavLink tag={Link} to='/pricing'>
-							Pricing
-						</NavLink>
-					</NavItem>
-					<NavItem>
-						<NavLink tag={Link} to='/disabled' disabled>
-							Disabled
-						</NavLink>
-					</NavItem>
-					<UncontrolledDropdown nav inNavbar>
-						<DropdownToggle nav caret>
-							Options
-						</DropdownToggle>
-						<DropdownMenu>
-							<DropdownItem>Option 1</DropdownItem>
-							<DropdownItem>Option 2</DropdownItem>
-							<DropdownItem divider />
-							<DropdownItem>Reset</DropdownItem>
-						</DropdownMenu>
-					</UncontrolledDropdown>
-				</Nav>
-				<NavbarText>Simple Text</NavbarText>
-			</Collapse>
-		</Navbar>
+		<Nav vertical className='bg-[#E5E5E5] z-10 h-[100vh] absolute flex flex-col justify-between'>
+			<div className='px-2 pt-2'>
+				<h1 className='font-black text-xs break-words'>
+					User
+				</h1>
+				<h1 className='font-black text-xs break-words'>
+					Management
+				</h1>
+				<h1 className='font-black text-xs break-words mb-3'>
+					System
+				</h1>
+				<hr className='border-4' />
+			</div>
+			<div className='flex flex-col gap-16'>
+				<NavItem>
+					<Link className='font-bold text-stone-100 mx-auto' tag={Link} to='/'>
+						<House size={50} color='#929292' className='mx-auto' />
+					</Link>
+				</NavItem>
+				<NavItem>
+					<Link className='text-stone-100 mx-auto' to='/users'>
+						<SquareUser size={50} color='#929292' className='mx-auto' />
+					</Link>
+				</NavItem>
+			</div>
+			<hr className='border-4 mx-2 pb-20'/>
+		</Nav>
 	);
 }
 

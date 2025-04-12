@@ -1,9 +1,10 @@
 import 'styles/main.scss';
+import 'index.css'
 import React from 'react';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import {Page} from 'components/Pages';
-import Home from 'views/home';
-import Users from 'views/users';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import  Page  from 'components/Pages/Page';
+import Home from 'views/home/Home';
+import Users from 'views/users/Users';
 
 function App() {
 	return (

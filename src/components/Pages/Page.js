@@ -8,10 +8,10 @@ function Page(props) {
 	const {children} = props;
 
 	return (
-		<div className={styles['page']}>
+		<div>
 			<PageNav />
 			<PageMain>{children}</PageMain>
-			<PageFooter />
+			{/* <PageFooter /> */}
 		</div>
 	);
 }
