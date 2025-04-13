@@ -1,4 +1,3 @@
-import styles from './PageFooter.module.scss';
 import React from 'react';
 
 function PageFooter() {

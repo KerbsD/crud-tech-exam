@@ -1,6 +1,4 @@
 import React from 'react';
-import styles from './Page.module.scss';
-import PageFooter from './PageFooter';
 import PageMain from './PageMain';
 import PageNav from './PageNav';
 

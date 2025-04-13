@@ -8,7 +8,7 @@ import Users from 'views/users/Users';
 
 function App() {
 	return (
-		<div className='app'>
+		<div className='app font-poppins'>
 			<Router>
 				<Page>
 					<Switch>
