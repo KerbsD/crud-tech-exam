@@ -65,11 +65,11 @@ function Index() {
 	const addUser = debounce(async () => {
 		const arrayIds = users.map(user => user.id)
 
+		if (!firstName || !lastName || !email) return setError("Missing Details")
+
 		const nFirstName = NAME_REGEX.test(firstName)
 		const nLastName = NAME_REGEX.test(lastName);
 		const nEmail = EMAIL_REGEX.test(email);
-
-		if (!firstName || !lastName || !email) return setError("Missing Details")
 
 		if (!nEmail) return setError("Invalid Email");
 		if (!nFirstName) return setError("Invalid First name");
@@ -103,21 +103,22 @@ function Index() {
 	}, 1000)
 
 	const editCurUser = debounce(async () => {
-		const nEmail = EMAIL_REGEX.test(email);
-
 		if (!firstName || !lastName || !email) return setError("Missing Details")
 
-		if (!nEmail) return setError("Invalid Email")
+		const nFirstName = NAME_REGEX.test(firstName)
+		const nLastName = NAME_REGEX.test(lastName);
+		const nEmail = EMAIL_REGEX.test(email);
 
-		const nFirstName = firstName.trim();
-		const nLastName = lastName.trim();
+		if (!nEmail) return setError("Invalid Email")
+		if (!nFirstName) return setError("Invalid First name");
+		if (!nLastName) return setError("Invalid Last name");
 
 		setIsDisable(true)
 
 		const newUserData = {
 			id: userID,
-			first_name: nFirstName,
-			last_name: nLastName,
+			first_name: firstName,
+			last_name: lastName,
 			email: email,
 			avatar: avatar
 		};
