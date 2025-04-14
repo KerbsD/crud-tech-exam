@@ -205,7 +205,7 @@ function Index() {
 
 			<Container className='max-h-[100vh] absolute left-[15%] top-[10%] mx-10'>
 				<div className='bg-[#E5E5E5] rounded-t-[13px]'>
-					<div className='py-3 ml-5 flex justify-between items-center'>
+					<div className='py-3 ml-5 flex justify-between items-center w-full'>
 						<button className='px-3 py-2 bg-[#FCA311] font-regular rounded-md flex justify-between align-center' onClick={() => handleModalDisplay("ADD USER")} color='primary'>
 							<UserRoundPlus className='mr-3' />Add User
 						</button>
@@ -267,26 +267,26 @@ function Index() {
 					</tbody>
 				</table>
 
+				<div className="flex justify-center absolute p-1 left-1/2 -translate-x-1/2 -bottom-10">
+					<button
+						onClick={() => handlePageChange(currentPage - 1)}
+						disabled={currentPage === 1}
+						className='text-stone-100 hover:bg-stone-400/75 rounded-full duration-150'
+					>
+						<ChevronLeft />
+					</button>
+					<span className='text-stone-100 w-[150px] text-center'>
+						Page <b className='	text-[#FCA311]'>{currentPage}</b> of {totalPages}
+					</span>
+					<button
+						onClick={() => handlePageChange(currentPage + 1)}
+						disabled={currentPage === totalPages}
+						className='text-stone-100 hover:bg-stone-400/75 rounded-full duration-150'
+					>
+						<ChevronRight />
+					</button>
+				</div>
 			</Container>
-			<div className="flex justify-center absolute p-1 left-1/2 -translate-x-16 bottom-24">
-				<button
-					onClick={() => handlePageChange(currentPage - 1)}
-					disabled={currentPage === 1}
-					className='text-stone-100 hover:bg-stone-400/75 rounded-full duration-150'
-				>
-					<ChevronLeft />
-				</button>
-				<span className='text-stone-100 w-[150px] text-center'>
-					Page <b className='	text-[#FCA311]'>{currentPage}</b> of {totalPages}
-				</span>
-				<button
-					onClick={() => handlePageChange(currentPage + 1)}
-					disabled={currentPage === totalPages}
-					className='text-stone-100 hover:bg-stone-400/75 rounded-full duration-150'
-				>
-					<ChevronRight />
-				</button>
-			</div>
 		</>
 	);
 }
