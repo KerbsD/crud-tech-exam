@@ -9,11 +9,11 @@ NPM: 8.19.2
 
 ## First Step
 - While in this repository, click the green button with a lable "code".
-- Then copy the URL of this repository - https://github.com/taeki-kim/frontend-crud-exam.git
+- Then copy the URL of this repository - https://github.com/KerbsD/crud-tech-exam.git
 
 ## Second Step
 - Go to VS Code and open terminal (use Git Bash to access git command)
-- In the terminal, type git clone https://github.com/taeki-kim/frontend-crud-exam.git
+- In the terminal, type git clone https://github.com/KerbsD/crud-tech-exam.git
 
 ## Third Step
 - After cloning the project in to your local machine, go to Terminal again.
