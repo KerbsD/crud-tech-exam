@@ -9,6 +9,7 @@ import { debounce } from "lodash";
 import ModalContent from 'components/ModalContent';
 
 const EMAIL_REGEX = /^(?:[a-zA-Z0-9_'^&/+-])+(?:\.[a-zA-Z0-9_'^&/+-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/;
+const NAME_REGEX = /^(?:[A-Za-z]+(?:[ \'-][A-Za-z]+)*)+(?: [A-Za-z]+(?:[ \'-][A-Za-z]+)*)*$/
 
 function Index() {
 	const [users, setUsers] = useState();
@@ -64,21 +65,22 @@ function Index() {
 	const addUser = debounce(async () => {
 		const arrayIds = users.map(user => user.id)
 
+		const nFirstName = NAME_REGEX.test(firstName)
+		const nLastName = NAME_REGEX.test(lastName);
 		const nEmail = EMAIL_REGEX.test(email);
 
 		if (!firstName || !lastName || !email) return setError("Missing Details")
 
-		if (!nEmail) return setError("Invalid Email")
-
-		const nFirstName = firstName.trim();
-		const nLastName = lastName.trim();
+		if (!nEmail) return setError("Invalid Email");
+		if (!nFirstName) return setError("Invalid First name");
+		if (!nLastName) return setError("Invalid Last name");
 
 		setIsDisable(true)
 
 		const userData = {
 			id: Math.max(...arrayIds) + 1,
-			first_name: nFirstName,
-			last_name: nLastName,
+			first_name: firstName,
+			last_name: lastName,
 			email: email,
 			avatar: "https://begpetjiutjcxrwmwdof.supabase.co/storage/v1/object/public/sneaker-cartel/Portfolio/OIP.jpg"
 		};
@@ -172,9 +174,17 @@ function Index() {
 			setAvatar(av)
 		} catch (err) {
 			console.error('Error getting user:', err);
-			setFatalError("Opps! Cannot found User ID.")
+			setFatalError(`Opps! Cannot found User ID. ${id}`)
 			handleModalDisplay()
 		}
+	}
+
+	const viewProfile = (id, fn, ln, email, av) => {
+		setFirstName(fn)
+		setLastName(ln)
+		setEmail(email)
+		setUserID(id)
+		setAvatar(av)
 	}
 
 	if (success) {
@@ -186,7 +196,7 @@ function Index() {
 	return (
 		<>
 			<Modal title={currModal} show={showModal} onClose={() => handleModalDisplay()}>
-				<ModalContent current={currModal} uID={userID} fName={firstName} lName={lastName} uEmail={email} disable={isDisable} onClick={currModal === "ADD USER" ? () => addUser() : currModal === "EDIT USER" ? () => editCurUser() : () => deleteCurUser()} fnChange={(e) => setFirstName(e.target.value)} lnChange={(e) => setLastName(e.target.value)} eChange={(e) => setEmail(e.target.value)} modalDisplay={handleModalDisplay}/>
+				<ModalContent current={currModal} uID={userID} fName={firstName} lName={lastName} uEmail={email} disable={isDisable} onClick={currModal === "ADD USER" ? () => addUser() : currModal === "EDIT USER" ? () => editCurUser() : () => deleteCurUser()} fnChange={(e) => setFirstName(e.target.value)} lnChange={(e) => setLastName(e.target.value)} eChange={(e) => setEmail(e.target.value)} modalDisplay={handleModalDisplay} uAvatar={avatar} />
 			</Modal>
 
 			<Error state={error} onClick={() => setError()} top={"top-[55%]"} />
@@ -221,16 +231,19 @@ function Index() {
 						{
 							paginatedUsers?.map(user => {
 								return (
-									<tr key={user.email}>
+									<tr className='hover:bg-stone-900/50 duration-150' key={user.id}>
 										<th className="p-2 border-b border-blue-gray-50 text-stone-100 text-center">{user.id}</th>
 										<td className="p-2 border-b border-blue-gray-50 text-stone-100">
 											<img src={user.avatar} alt='user-avatar' className="inline-block relative object-center rounded-full w-12 h-12 border border-blue-gray-50 bg-blue-gray-50/50 object-contain p-1 left-1/2 -translate-x-1/2" />
 										</td>
-										<td className="p-2 border-b border-blue-gray-50 text-stone-100 text-center">{user.email}</td>
+										<td onClick={() => {
+											handleModalDisplay("USER PROFILE")
+											viewProfile(user.id, user.first_name, user.last_name, user.email, user.avatar)
+										}} className="p-2 border-b border-blue-gray-50 text-stone-100 text-center cursor-pointer">{user.email}</td>
 										<td className="p-2 border-b border-blue-gray-50 text-stone-100 text-center">{user.first_name}</td>
 										<td className="p-2 border-b border-blue-gray-50 text-stone-100 text-center">{user.last_name}</td>
 										<td className="p-2 border-b border-blue-gray-50 text-stone-100 flex justify-center gap-4 relative top-[11.5px]">
-											<Pencil size={25} className='mb-[12px] hover:bg-stone-500/75 duration-150 rounded' color='#FCA311' onClick={
+											<Pencil size={25} className='mb-[12px] hover:bg-stone-500/75 duration-150 rounded cursor-pointer' color='#FCA311' onClick={
 												() => {
 													handleModalDisplay("EDIT USER")
 													getUserId(user.id, user.first_name, user.last_name, user.email, user.avatar)
@@ -238,7 +251,7 @@ function Index() {
 											}>
 												Edit
 											</Pencil>
-											<Trash2 size={25} className='mb-[12px]' onClick={
+											<Trash2 size={25} className='mb-[12px] hover:bg-stone-500/75 duration-150 rounded cursor-pointer' onClick={
 												() => {
 													handleModalDisplay()
 													getUserId(user.id, user.first_name, user.last_name, user.email, user.avatar)
