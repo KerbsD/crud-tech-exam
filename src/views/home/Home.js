@@ -10,8 +10,9 @@ function Index() {
 					<h1 className='text-[48px] text-stone-100 font-semibold'>Michael Kirby Rivera</h1>
 					<div className='border-2 border-[#FCA311] z-0 w-[450px]'></div>
 					<div className='flex flex-col'>
-						<a className='font-medium text-[24px] text-stone-100 mb-[34px]' href='mailto:email@address.com'>michaelkirbyrivera492@gmail.com</a>
-						<a className='font-medium text-[24px] text-[#FCA311]' href='tel:+635552368'>(+63) 123-1234-1234</a>
+						<a className='font-medium text-[24px] text-stone-100 mb-3' href='mailto:email@address.com'>michaelkirbyrivera492@gmail.com</a>
+						<a className='font-medium text-[24px] text-[#FCA311] mb-3' href='tel:+635552368'>(+63) 985-209-6868</a>
+						<p className='font-light text-sm text-stone-100 w-1/3 text-justify' >Hello, I'm Kirby Rivera. A software developer based in Antipolo City, Philippines that focuses on Full-stack web development.</p>
 					</div>
 				</div>
 				<div className='my-auto mr-32' >

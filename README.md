@@ -41,4 +41,8 @@ NPM: 8.19.2
 
 - The Add user and Edit action, prompts almost the same modal but the only difference is that in the edit user modal the inputs are pre-filled with user data based on the row data ID.
 
-- To test the inputs on both User and Edit fields, try to provide incomplete details, numbers and random symbols on the name fields, and incomplete email
+- To test the inputs on both User and Edit fields, try to provide incomplete details, numbers and random symbols on the name fields (except "'"), and incomplete email.
+
+
+
+
