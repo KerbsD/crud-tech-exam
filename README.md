@@ -43,6 +43,6 @@ NPM: 8.19.2
 
 - To test the inputs on both User and Edit fields, try to provide incomplete details, numbers and random symbols on the name fields (except "'"), and incomplete email.
 
-
+- Every submit button has a debounce to avoid multiple request on the api.
 
 
