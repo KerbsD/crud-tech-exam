@@ -1,4 +1,4 @@
-# Front End Developer CRUD Test
+# Instruction:
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -7,19 +7,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Node: v16.18.1\
 NPM: 8.19.2
 
-## Tasks
-
-You are tasked to create a simple page with Users Table for the administrator site using React. Basically, you need to build a CRUD for User Management using same project below. The exam will have a set of instructions for you to follow, please read.
-
-NOTE: The exam should be based on the sample code. 
-
-### A user should be able to do the following functionalities:
-- [x] View home page or dashboard with your personal information (basic introduction)
-- [x] View the list of users
-- [x] Create a user
-- [x] View the profile of the user
-- [x] Update a user
-- [x] Delete a user
+## First Step
+- While in this repository, click the green button with a lable "code".
+- Then copy the URL of this repository
 
 ### Instructions
 - Should have 2 directories `/` and `/users`
